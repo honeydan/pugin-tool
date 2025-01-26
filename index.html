@@ -7,20 +7,26 @@
   <script>
     // 初始化 Storyblok 插件
     const initStoryblokPlugin = () => {
-      window.storyblok.init(); // 初始化 Storyblok 插件环境
+    //   window.storyblok.init(); // 初始化 Storyblok 插件环境
 
-      // 接收来自 Storyblok 的事件
-      window.storyblok.on('input', (event) => {
-        console.log('Storyblok event:', event);
-      });
+    //   // 接收来自 Storyblok 的事件
+    //   window.storyblok.on('input', (event) => {
+    //     console.log('Storyblok event:', event);
+    //   });
 
-      // 示例：向 Storyblok 发送通知
-      document.getElementById('sendMessage').addEventListener('click', () => {
-        window.storyblok.sendNotification({
-          type: 'success',
-          message: 'Message sent successfully!',
-        });
-      });
+    //   // 示例：向 Storyblok 发送通知
+    //   document.getElementById('sendMessage').addEventListener('click', () => {
+    //     window.storyblok.sendNotification({
+    //       type: 'success',
+    //       message: 'Message sent successfully!',
+    //     });
+    //   });
+    window.parent.postMessage({
+        action: 'tool-changed',
+        tool: 'test-tool-plugin-dan',
+        event: 'heightChange',
+        height: 500
+    }, '*');
     };
 
     // 加载完成后初始化插件
