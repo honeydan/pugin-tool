@@ -1,3 +1,5 @@
-console.log({
-    name: 'liu dan'
-})
+document.addEventListener('click', (event) => {
+    if (event.target.id === 'navigate-button') {
+        window.location.href = 'https://baidu.com';
+    }
+});
