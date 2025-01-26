@@ -2,7 +2,7 @@ const StoryblokClient = require('storyblok-js-client')
 
 // Insert your oauth token and folder id
 const Storyblok = new StoryblokClient({
-  oauthToken: 'YOUR_OAUTH_TOKEN'
+  oauthToken: 'y8hgA9gqN4Rnf+g9E2NpTA=='
 })
 
 const fieldToDelete = 'my_field'
