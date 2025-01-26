@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Tool Plugin</title>
+  <script>
+    // 初始化 Storyblok 插件
+    const initStoryblokPlugin = () => {
+      window.storyblok.init(); // 初始化 Storyblok 插件环境
+
+      // 接收来自 Storyblok 的事件
+      window.storyblok.on('input', (event) => {
+        console.log('Storyblok event:', event);
+      });
+
+      // 示例：向 Storyblok 发送通知
+      document.getElementById('sendMessage').addEventListener('click', () => {
+        window.storyblok.sendNotification({
+          type: 'success',
+          message: 'Message sent successfully!',
+        });
+      });
+    };
+
+    // 加载完成后初始化插件
+    window.onload = () => {
+      initStoryblokPlugin();
+    };
+  </script>
+</head>
+<body>
+  <h1>My Custom Tool Plugin</h1>
+  <button id="sendMessage">Send Message</button>
+</body>
+</html>
