@@ -1,14 +1,21 @@
 document.addEventListener("DOMContentLoaded", async () => {
-    const { apiPlugin, storyblokInit } = window.storyblok
-    const storyblokApi = storyblokInit({
-      accessToken: "m5HATAyyFBzgZQgnBr6lgQtt",
-      use: [apiPlugin]
-    });
-    console.log({
-        
-storyblokApi
- 
-    })
+  const { apiPlugin, storyblokInit } = window.storyblok;
+  const storyblokApi = storyblokInit({
+    accessToken: "m5HATAyyFBzgZQgnBr6lgQtt",
+    use: [apiPlugin],
+  });
+
+  console.log({
+    storyblokApi,
+  });
+  const { data } = await storyblokApi.get("cdn/stories", {
+    version: "draft",
+  });
+
+  const stories = data.stories;
+  stories.forEach((story) => {
+    console.log(story.slug); // 输出每个 story 的 slug
+  });
 });
 
 // const storyblok = new StoryblokClient({
