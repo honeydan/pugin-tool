@@ -3,9 +3,10 @@ document.addEventListener("DOMContentLoaded", () => {
         accessToken: "m5HATAyyFBzgZQgnBr6lgQtt",
     });
     
-
 //   const appBridge = new window.Storyblok.bridge();
-
+console.log({
+    appBridge
+})
   const btn1 = document.getElementById("btn1");
 
   btn1.addEventListener("click", () => {
@@ -23,6 +24,3 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("实时监听到用户操作:", event);
   });
 });
-console.log({
-    storyblok: window.Storyblok
-})
