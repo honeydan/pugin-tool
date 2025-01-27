@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const { window } = new StoryblokBridge({
+    const appBridge = new StoryblokBridge({
         accessToken: "m5HATAyyFBzgZQgnBr6lgQtt",
     });
     
@@ -8,7 +8,7 @@ console.log(window)
 window.bridge = window.StoryblokBridge;
   const btn1 = document.getElementById("btn1");
 
-  window.StoryblokBridge.on('input', (event) => {
+  appBridge.on('input', (event) => {
     console.log("实时监听到用户操作:", event);
   });
 });
