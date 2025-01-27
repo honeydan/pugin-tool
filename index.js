@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const appBridge = new StoryblokBridge({
     accessToken: "m5HATAyyFBzgZQgnBr6lgQtt",
   });
-  appBridge.init();
   if (appBridge.isInEditor()) {
     window.parent.postMessage({
         action: 'get-context',
