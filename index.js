@@ -7,8 +7,14 @@ document.addEventListener("DOMContentLoaded", () => {
 console.log(window)
 window.bridge = appBridge;
   const btn1 = document.getElementById("btn1");
+  btn1.addEventListener('click', () => {
+    const inputlist = document.querySelectorAll('input');
+    console.log({
+        inputlist
+    })
+  })
 
-  appBridge.on('input', (event) => {
+  appBridge.on('change', (event) => {
     console.log("实时监听到用户操作:", event);
   });
 });
