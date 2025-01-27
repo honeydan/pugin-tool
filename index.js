@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (appBridge.isInEditor()) {
     window.parent.postMessage({
         action: 'get-context',
-        tool: 'my-plugin-name',
+        tool: 'test_plugin_4',
         event: 'getContext'
       }, "*")
     console.log(window);
