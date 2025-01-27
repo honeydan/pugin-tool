@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 console.log({
     appBridge
 })
+window.bridge = appBridge.window.StoryblokBridge;
   const btn1 = document.getElementById("btn1");
 
   appBridge.window.StoryblokBridge.on(["input", "change"], (event) => {
