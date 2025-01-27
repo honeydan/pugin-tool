@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const appBridge = new StoryblokBridge();
-    storyblok.init({
-    accessToken: "m5HATAyyFBzgZQgnBr6lgQtt",
-  });
+    const appBridge = new StoryblokBridge({
+        accessToken: "m5HATAyyFBzgZQgnBr6lgQtt",
+    });
+    
 
 //   const appBridge = new window.Storyblok.bridge();
 
