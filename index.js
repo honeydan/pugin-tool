@@ -1,76 +1,14 @@
-const StoryblokClient = require('storyblok-js-client')
+// const StoryblokClient = require("storyblok-js-client");
+const appBridge = new window.Storyblok.bridge();
 
-// Insert your oauth token and folder id
-const Storyblok = new StoryblokClient({
-  oauthToken: 'y8hgA9gqN4Rnf+g9E2NpTA=='
-})
+appBridge.on(["input", "change"], (event) => {
+  console.log("实时监听到用户操作:", event);
+});
 
-const fieldToDelete = 'my_field'
-const componentName = 'page'
-
-// Insert your source space and folder id
-const spaceId = 'YOUR_SPACE_ID'
-
-const StoryblokHelper = {
-  getAll(page) {
-    return Storyblok.get('spaces/' + spaceId + '/stories', {
-      per_page: 25,
-      page: page,
-      contain_component: componentName
-    })
-  },
-  cleanUp(tree) {
-    var traverse = function (jtree) {
-      if (jtree.constructor === Array) {
-        for (var item = 0; item < jtree.length; item++) {
-          traverse(jtree[item])
-        }
-      } else if (jtree.constructor === Object) {
-        if (jtree[fieldToDelete]) {
-          delete jtree[fieldToDelete]
-        }
-
-        for (var treeItem in jtree) {
-          traverse(jtree[treeItem])
-        }
-      }
-    }
-
-    traverse(tree)
-    return tree
-  }
-}
-
-async function getAllStories(){
-  var page = 1
-  var res = await StoryblokHelper.getAll(page)
-  var all = res.data.stories
-  var lastPage = Math.ceil((res.total / 25))
-
-  while (page < lastPage){
-    page++
-    res = await StoryblokHelper.getAll(page)
-    res.data.stories.forEach((story) => {
-      all.push(story)
-    })
-  }
-
-  for (var i = 0; i < all.length; i++) {
-    console.log('Updating: ' + all[i].name)
-
-    try {
-      let storyResult = await Storyblok.get('spaces/' + spaceId + '/stories/' + all[i].id)
-      await Storyblok.put('spaces/' + spaceId + '/stories/' + all[i].id, {
-        story: {content: StoryblokHelper.cleanUp(storyResult.data.story.content)}
-      })
-    } catch(e) {
-      console.log(e)
-    }
-  }
-
-  return all
-}
+appBridge.getCurrentStory().then((story) => {
+  console.log("当前正在编辑的 story:", story);
+});
 
 getAllStories().then(() => {
-  console.log('Finished')
-})
+  console.log("Finished");
+});
